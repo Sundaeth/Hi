@@ -1,0 +1,24 @@
+# Set autosave to 3 minutes
+%autosave 180
+# ipython magic
+%pylab inline
+# Import modules
+import os
+import datetime as dt
+from scipy import stats
+import numpy as np
+import pandas as pd
+import seaborn as sns
+sns.set(style="whitegrid", color_codes=True)
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+matplotlib.style.use('seaborn-paper')
+
+# The following code reads all the Kickstarter data into Pandas DataFrames
+# empty data will be filled in as NaN
+# The data can be found at http://bit.ly/2cgMGDm
+kickstarter_df = pd.read_csv('DSI_kickstarterscrape_dataset.csv', keep_default_na=True)
+# Rename columns with spaces to _
+kickstarter_df.rename(columns={'project id': 'project_id', 'funded percentage': 'funded_percentage', 'funded date': 'funded_date', 'reward levels': 'reward_levels'}, inplace=True)
+# Set index as 'project_id'
+kickstarter_df.set_index(['project_id'], inplace=True)
